@@ -7,21 +7,19 @@ services:
     build: ../hello-world-nginx
 #    networks:
 #      - hellodevops-net
-#    ports:
-#      - "3306:3306"
-#    command: --default-authentication-plugin=mysql_native_password
+    ports:
+      - "3000:3000"
+      - "3002:3002"
     restart: always
 #    volumes:
-#      - .:/docker-entrypoint-initdb.d
-#    environment: 
-#      MYSQL_ROOT_PASSWORD: password
+#      - ./templates:/etc/nginx/templates
 
 
   # hello-world-node application
   hello-node:
     build: ../hello-world-nodejs
-#    volumes: 
-#      - ../hello-node:/opt/hello-node
+    volumes: 
+      - ../hello-world-nodejs:/opt/hello-world-nodejs
 #    networks:
 #      - hellodevops-net
 #    ports:
@@ -29,27 +27,20 @@ services:
     depends_on:
       - hello-nginx
     restart: on-failure
-#    environment:
-#      RABBITMQ_HOST: mq
-#      MYSQL_HOST: db
-#      MYSQL_PASSWORD: password
 
 
   # hello-world-golang application
   hello-golang:
     build: ../hello-world-golang
-#    volumes: 
-#      - ../hello-python:/opt/hello-python
+    volumes: 
+      - ../hello-world-golang:/opt/hello-world-golang
 #    networks:
 #      - hellodevops-net
     depends_on:
       - hello-nginx
-    restar: on-failure
+    restart: on-failure
 #    ports:
 #      - "8080:8080"
-#    environment:
-#      RABBITMQ_HOST: mq
-
 
 
 #networks:
