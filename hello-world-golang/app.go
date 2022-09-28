@@ -9,9 +9,9 @@ import (
 var scores = make(map[string]int)
 
 func main() {
-	http.HandleFunc("/hello", HelloServer)
-	http.HandleFunc("/inc-score", IncrementCounter)
-	http.HandleFunc("/get-scores", GetScores)
+	http.HandleFunc("/golang/hello", HelloServer)
+	http.HandleFunc("/golang/inc-score", IncrementCounter)
+	http.HandleFunc("/golang/get-scores", GetScores)
 	http.ListenAndServe(":3002", nil)
 }
 

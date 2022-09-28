@@ -1,0 +1,1 @@
+En el caso del Golang no existia el Dockerfile, el cual fue armado en su totalidad. Se probo localmente su funcionamiento y esta OK.

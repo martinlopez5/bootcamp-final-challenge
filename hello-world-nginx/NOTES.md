@@ -1,0 +1,1 @@
+En el caso del Nginx, se arreglo el Dockerfile, ya que no exponia el puerto y se agregaron las direcciones al default.conf

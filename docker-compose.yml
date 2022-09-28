@@ -1,48 +1,50 @@
-version: "3"
+version: "3.8"
 
 services:
   
-  # hello-world-nginx
-  hello-nginx: 
-    build: ../hello-world-nginx
-#    networks:
-#      - hellodevops-net
+# hello-world-nginx
+  hello-nginx:
+    container_name: nginx-container
+    build: ./hello-world-nginx
+    networks:
+      - bootcamp-net
+    ports:
+      - "80:18181"
+    restart: always
+    volumes:
+      - ./hello-world-nginx/docker-depends:/etc/nginx/conf.d
+
+
+# hello-world-node application
+  hello-node:
+    container_name: nodejs-container
+    build: ./hello-world-nodejs
+    volumes: 
+      - ./hello-world-nodejs:/usr/app
+    networks:
+      - bootcamp-net
     ports:
       - "3000:3000"
-      - "3002:3002"
-    restart: always
-#    volumes:
-#      - ./templates:/etc/nginx/templates
-
-
-  # hello-world-node application
-  hello-node:
-    build: ../hello-world-nodejs
-    volumes: 
-      - ../hello-world-nodejs:/opt/hello-world-nodejs
-#    networks:
-#      - hellodevops-net
-#    ports:
-#      - "9443:9443"
     depends_on:
       - hello-nginx
     restart: on-failure
 
 
-  # hello-world-golang application
+# hello-world-golang application
   hello-golang:
-    build: ../hello-world-golang
+    container_name: golang-container
+    build: ./hello-world-golang
     volumes: 
-      - ../hello-world-golang:/opt/hello-world-golang
-#    networks:
-#      - hellodevops-net
+      - ./hello-world-golang:/go/src/app
+    networks:
+      - bootcamp-net
     depends_on:
       - hello-nginx
     restart: on-failure
-#    ports:
-#      - "8080:8080"
+    ports:
+      - "3002:3002"
 
 
-#networks:
-# hellodevops-net:
-#    driver: bridge
+networks:
+ bootcamp-net:
+    driver: bridge
