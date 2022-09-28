@@ -12,7 +12,7 @@ services:
       - "80:18181"
     restart: always
     volumes:
-      - ./hello-world-nginx/docker-depends:/etc/nginx/conf.d
+      - ./hello-world-nginx/docker-deps:/etc/nginx/conf.d
 
 
 # hello-world-node application
