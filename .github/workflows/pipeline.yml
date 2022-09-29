@@ -13,23 +13,6 @@ env:
 
 
 jobs:
-  build-go:
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v3
-
-    - name: Set up Go
-      uses: actions/setup-go@v3
-      with:
-        go-version: 1.17
-
-    - name: Build
-      run: go build -v ./...
-
-    - name: Test
-      run: go test -v ./...
-      
-
   build-docker-go:
     runs-on: ubuntu-latest
     needs: build-go
@@ -50,24 +33,6 @@ jobs:
         context: ./hello-world-golang
         push: true
         tags: ${{ env.REGISTRY }}/${{ ENV.IMAGE_NAME_GO }}:latest
-
-
-
-  build-node:
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [14.x]
-
-    steps:
-    - uses: actions/checkout@v3
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v3
-      with:
-        node-version: ${{ matrix.node-version }}
-        cache: 'npm'
-    - run: npm install
-    - run: npm test
 
 
   build-docker-node:
