@@ -5,7 +5,9 @@ services:
 # hello-world-nginx
   hello-nginx:
     container_name: nginx-container
-    build: ./hello-world-nginx
+    build:
+      context: ./hello-world-nginx
+    image: margus/nginx:1.0.0
     networks:
       - bootcamp-net
     ports:
@@ -18,7 +20,9 @@ services:
 # hello-world-node application
   hello-node:
     container_name: nodejs-container
-    build: ./hello-world-nodejs
+    build:
+      context: ./hello-world-nodejs
+    image: margus/nodejs:1.0.0
     volumes: 
       - ./hello-world-nodejs:/usr/app
     networks:
@@ -33,7 +37,9 @@ services:
 # hello-world-golang application
   hello-golang:
     container_name: golang-container
-    build: ./hello-world-golang
+    build: 
+      context: ./hello-world-golang
+    image: margus/golang:1.0.0
     volumes: 
       - ./hello-world-golang:/go/src/app
     networks:
