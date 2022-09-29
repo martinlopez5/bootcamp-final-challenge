@@ -7,7 +7,7 @@ services:
     container_name: nginx-container
     build:
       context: ./hello-world-nginx
-    image: image-node
+    image: image-node:1.0.0
     networks:
       - bootcamp-net
     ports:
@@ -22,7 +22,7 @@ services:
     container_name: nodejs-container
     build:
       context: ./hello-world-nodejs
-    image: margus/nodejs:1.0.0
+    image: image-nodejs:1.0.0
     volumes: 
       - ./hello-world-nodejs:/usr/app
     networks:
@@ -39,7 +39,7 @@ services:
     container_name: golang-container
     build: 
       context: ./hello-world-golang
-    image: image-golang
+    image: image-golang:1.0.0
     volumes: 
       - ./hello-world-golang:/go/src/app
     networks:

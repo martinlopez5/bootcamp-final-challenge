@@ -13,9 +13,9 @@ env:
 
 
 jobs:
+  
   build-docker-go:
     runs-on: ubuntu-latest
-    needs: build-go
     steps:
     - uses: actions/checkout@v3
     - name: Set up QEMU
@@ -37,7 +37,6 @@ jobs:
 
   build-docker-node:
     runs-on: ubuntu-latest
-    needs: build-node
     steps:
     - uses: actions/checkout@v3
     - name: Set up QEMU
