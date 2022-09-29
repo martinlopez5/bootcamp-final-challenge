@@ -13,7 +13,6 @@ env:
 
 
 jobs:
-
   build-go:
     runs-on: ubuntu-latest
     steps:
@@ -54,7 +53,7 @@ jobs:
 
 
 
-   build-node:
+  build-node:
     runs-on: ubuntu-latest
     strategy:
       matrix:
