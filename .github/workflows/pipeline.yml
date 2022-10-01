@@ -10,6 +10,9 @@ env:
     REGISTRY: margus23
     IMAGE_NAME_GO: image-golang
     IMAGE_NAME_NODE: image-node
+    HEROKU_APP_NAME_NODE: desafio-final-bc-node
+    HEROKU_APP_NAME_GOLANG: desafio-final-bc-golang
+
 
 
 jobs:
@@ -35,6 +38,22 @@ jobs:
         tags: ${{ env.REGISTRY }}/${{ ENV.IMAGE_NAME_GO }}:latest
 
 
+  deploy-heroku-go:
+      runs-on: ubuntu-latest
+      needs: build-docker
+      steps:
+        - uses: actions/checkout@v3
+        - uses: akhileshns/heroku-deploy@v3.12.12 # This is the action
+          with:
+            heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+            heroku_app_name: ${{env.HEROKU_APP_NAME_GOLANG}} #Must be unique in Heroku
+            heroku_email: "martingustavolopez@gmail.com"
+            appdir: ./hello-world-golang
+            healthcheck: "https://${{env.HEROKU_APP_NAME_GOLANG}}.herokuapp.com/golang"
+            usedocker: true
+
+
+
   build-docker-node:
     runs-on: ubuntu-latest
     steps:
@@ -54,3 +73,35 @@ jobs:
         context: ./hello-world-nodejs
         push: true
         tags: ${{ env.REGISTRY }}/${{ ENV.IMAGE_NAME_NODE }}:latest
+
+
+  deploy-heroku-node:
+      runs-on: ubuntu-latest
+      needs: build-docker
+      steps:
+        - uses: actions/checkout@v3
+        - uses: akhileshns/heroku-deploy@v3.12.12 # This is the action
+          with:
+            heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+            heroku_app_name: ${{env.HEROKU_APP_NAME_NODE}} #Must be unique in Heroku
+            heroku_email: "martingustavolopez@gmail.com"
+            appdir: ./hello-world-nodejs
+            healthcheck: "https://${{secrets.HEROKU_API_KEY}}.herokuapp.com/hello"
+            usedocker: true
+
+
+  # deploy-to-EC2:
+  #   name: Deploy
+  #   runs-on: ubuntu-latest
+    
+  #   steps:
+  #   - name: Checkout
+  #     uses: actions/checkout@v2
+
+  #   - name: Configure AWS credentials
+  #     uses: aws-actions/configure-aws-credentials@v1
+  #     with:
+  #       aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+  #       aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+  #       # TODO Change your AWS region here!
+  #       aws-region: us-east-1
