@@ -48,7 +48,7 @@ jobs:
             heroku_api_key: ${{secrets.HEROKU_API_KEY}}
             heroku_app_name: ${{env.HEROKU_APP_NAME_GOLANG}} #Must be unique in Heroku
             heroku_email: "martingustavolopez@gmail.com"
-            #healthcheck: "https://${{env.HEROKU_APP_NAME_GOLANG}}.herokuapp.com/golang/"
+            healthcheck: "https://${{env.HEROKU_APP_NAME_GOLANG}}.herokuapp.com/golang/"
             appdir: ./hello-world-golang
             usedocker: true
 

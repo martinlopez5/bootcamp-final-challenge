@@ -14,8 +14,8 @@ func main() {
 
     if port == "" {
         port = "3002"
+	}
 
-func main() {
 	http.HandleFunc("/golang/hello", HelloServer)
 	http.HandleFunc("/golang/inc-score", IncrementCounter)
 	http.HandleFunc("/golang/get-scores", GetScores)
