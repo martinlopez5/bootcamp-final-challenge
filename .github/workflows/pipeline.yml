@@ -91,7 +91,9 @@ jobs:
 
 
   deploy-to-EC2:
-    needs: Integration
+    needs:
+      - build-docker-go
+      - build-docker-node
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
