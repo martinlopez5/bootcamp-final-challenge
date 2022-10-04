@@ -10,8 +10,8 @@ env:
     REGISTRY: margus23
     IMAGE_NAME_GO: image-golang
     IMAGE_NAME_NODE: image-node
-    HEROKU_APP_NAME_NODE: desafio-final-bc-node
-    HEROKU_APP_NAME_GOLANG: desafio-final-bc-golang
+    HEROKU_APP_NAME_NODE: desafio-final-bc-node2
+    HEROKU_APP_NAME_GOLANG: desafio-final-bc-golang2
 
 
 
