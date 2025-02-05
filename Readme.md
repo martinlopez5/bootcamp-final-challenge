@@ -48,5 +48,3 @@ y mi linktree [roxsross](https://roxs.295devops.com) 😊
 Comprarme un cafe! [![Comprar](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/roxsross)
 
 "No se trata de cambiar el mundo, creo que creas un cambio pequeño, pero que te importe estás cambiando las cosas".
-
-Test nombre rama en PR.
